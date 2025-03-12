@@ -22,6 +22,7 @@ export async function middleware(request: NextRequest) {
   if (!token) {
     // Redirect to login page if no token
     //return NextResponse.redirect(loginUrl);
+    return;
   }
   
   // Verify if session is valid based on stored token
