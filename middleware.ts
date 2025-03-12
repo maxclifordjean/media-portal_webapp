@@ -21,14 +21,14 @@ export async function middleware(request: NextRequest) {
   // Check if user is authenticated
   if (!token) {
     // Redirect to login page if no token
-    return NextResponse.redirect(loginUrl);
+    //return NextResponse.redirect(loginUrl);
   }
   
   // Verify if session is valid based on stored token
   const isValidToken = await tokenVerify(userPool.poolData.UserPoolId, token.value, userPool.poolData.ClientId);
   
   if (!isValidToken){ // Redirect to login page if invalid token
-    return NextResponse.redirect(loginUrl);
+    //return NextResponse.redirect(loginUrl);
   }
 
   return NextResponse.next();
