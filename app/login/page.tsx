@@ -35,16 +35,20 @@ export default function Home() {
     });
 
     user.authenticateUser(authenticationDetails, {
-      onSuccess: async(session) => {
-        //Store token in session
-
-        console.log('auth before set token')
-        await TokenAccess.set(session.getIdToken().getJwtToken());
-        console.log('auth succeed')
-        //Redirect to portal
-        router.push("/apps");
+      onSuccess: async(session: { getIdToken: () => { (): any; new(): any; getJwtToken: { (): any; new(): any; }; }; }) => {
+        try {
+          //Store token in session
+          console.log('auth before set token')
+          await TokenAccess.set(session.getIdToken().getJwtToken());
+          console.log('auth succeed')
+          //Redirect to portal
+          router.push("/apps");
+        }catch(e){
+          console.error('auth:err',e);
+        }
       },
-      onFailure: (err) => {
+      onFailure: (err: { message: any; }) => {
+        console.error('err',err);
         setErrorMessage(err.message || "Échec de la connexion");
       },
     });
