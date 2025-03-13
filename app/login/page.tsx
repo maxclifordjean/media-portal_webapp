@@ -40,7 +40,7 @@ export default function Home() {
         TokenAccess.set(session.getIdToken().getJwtToken());
 
         //Redirect to portal
-        router.push("/");
+        router.push("/apps");
       },
       onFailure: (err) => {
         setErrorMessage(err.message || "Échec de la connexion");
