@@ -40,7 +40,7 @@ export default function Home() {
         TokenAccess.set(session.getIdToken().getJwtToken());
 
         //Redirect to portal
-        router.push("https://portal.clifftechnologies.co");
+        router.push("/");
       },
       onFailure: (err) => {
         setErrorMessage(err.message || "Échec de la connexion");
