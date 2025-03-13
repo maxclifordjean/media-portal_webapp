@@ -5,7 +5,8 @@ import Cookies from 'js-cookie';
 
 export const set = async (token) => {
     console.log('tokenaccess:set:before', token);
-    await cookies().set("token", token);
+    const cookieStore = await cookies()
+    await cookieStore.set("token", token);
     console.log('tokenaccess:set:after', token);
 
     // const cookieStore = await cookies()
