@@ -27,7 +27,7 @@ export function Sidebar() {
 
   const logout = async()=>{
     await signout(); //TODO Fix not working
-    router.push("https://auth.portal.clifftechnologies.co");
+    router.push("https://portal.clifftechnologies.co/login");
   }
 
   return (
