@@ -4,7 +4,9 @@ import { cookies } from 'next/headers'
 import Cookies from 'js-cookie';
 
 export const set = async (token) => {
+    console.log('tokenaccess:set:before', token);
     cookies().set("token", token);
+    console.log('tokenaccess:set:after', token);
 
     // const cookieStore = await cookies()
     // cookieStore.set('token', token, { domain: ".clifftechnologies.co", secure: true, sameSite: 'strict' });
