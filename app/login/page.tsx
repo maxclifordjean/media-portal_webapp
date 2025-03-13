@@ -35,7 +35,7 @@ export default function Home() {
     });
 
     user.authenticateUser(authenticationDetails, {
-      onSuccess: async(session: { getIdToken: () => { (): any; new(): any; getJwtToken: { (): any; new(): any; }; }; }) => {
+      onSuccess: async(session) => {
         try {
           //Store token in session
           console.log('auth before set token')
@@ -47,7 +47,7 @@ export default function Home() {
           console.error('auth:err',e);
         }
       },
-      onFailure: (err: { message: any; }) => {
+      onFailure: (err) => {
         console.error('err',err);
         setErrorMessage(err.message || "Échec de la connexion");
       },
