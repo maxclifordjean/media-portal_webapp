@@ -5,8 +5,8 @@ import Cookies from 'js-cookie';
 
 export const set = async (token) => {
     cookies().set("token", token, {
-        domain: ".portal.clifftechnologies.co",
-        path: "/",
+        domain: "portal.clifftechnologies.co",
+        // path: "/",
         secure: true,
         httpOnly: true,
         sameSite: "none",
