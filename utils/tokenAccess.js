@@ -8,8 +8,8 @@ export const set = async (token) => {
         domain: "portal.clifftechnologies.co",
         // path: "/",
         secure: true,
-        httpOnly: true,
-        sameSite: "none",
+        // httpOnly: true,
+        // sameSite: "none",
         maxAge: 60 * 60 * 24 * 7
     })
 
