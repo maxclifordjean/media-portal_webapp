@@ -1,3 +1,5 @@
+'use client';
+
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import userPool from "./utils/userPool";
@@ -9,8 +11,10 @@ const publicRoutes: string | any[] = ['/login'];
 
 export async function middleware(request: NextRequest) {
   debugger;
-  const loginUrl = new URL("https://portal.clifftechnologies.co/login", request.url);
+  let response = NextResponse.next()
+  const loginUrl = new URL("https://clifftechnologies.co/login", request.url);
   console.log('loginUrl',loginUrl);
+  // const token = response.cookies.get('token') //localStorage.getItem('token');// 
   const token = await TokenAccess.get();
   const { pathname } = request.nextUrl;
   console.log('mdw:token',token);

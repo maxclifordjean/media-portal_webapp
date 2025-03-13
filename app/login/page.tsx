@@ -7,6 +7,7 @@ import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import userPool from "../../utils/userPool";
 import * as TokenAccess from "../../utils/tokenAccess";
 import { useRouter } from 'next/navigation';
+import { NextResponse } from 'next/server';
 
 interface LoginFormInputs {
   username: string;
@@ -42,7 +43,13 @@ export default function Home() {
           await TokenAccess.set(session.getIdToken().getJwtToken());
           console.log('auth succeed')
           //Redirect to portal
-          router.push("/apps");
+          // router.push("/apps");
+          // localStorage.setItem('token', session.getIdToken().getJwtToken());
+          // let response = NextResponse.next();
+          // const token = session.getIdToken().getJwtToken();
+          // console.log('___tk',token)
+          // response.cookies.set('token',token);
+          window.location.href = '/apps'; // Redirection après connexion
         }catch(e){
           console.error('auth:err',e);
         }
