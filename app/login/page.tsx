@@ -38,9 +38,9 @@ export default function Home() {
       onSuccess: async(session) => {
         //Store token in session
         TokenAccess.set(session.getIdToken().getJwtToken());
-
+        console.log('auth succeed')
         //Redirect to portal
-        router.push("/apps");
+        //router.push("/apps");
       },
       onFailure: (err) => {
         setErrorMessage(err.message || "Échec de la connexion");

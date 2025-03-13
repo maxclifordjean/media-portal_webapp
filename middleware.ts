@@ -11,7 +11,7 @@ export async function middleware(request: NextRequest) {
   const loginUrl = new URL("https://portal.clifftechnologies.co/login", request.url);
   const token = await TokenAccess.get();
   const { pathname } = request.nextUrl;
-
+  console.log('mdw:token',token);
   // Allow access to public routes without authentication
   if (publicRoutes.includes(pathname)) {
     return NextResponse.next();
@@ -20,6 +20,7 @@ export async function middleware(request: NextRequest) {
   // Check if user is authenticated
   if (!token) {
     // Redirect to login page if no token
+    console.log('mdw:no token');
     return NextResponse.redirect(loginUrl);
   }
   
@@ -27,6 +28,7 @@ export async function middleware(request: NextRequest) {
   const isValidToken = await tokenVerify(userPool.poolData.UserPoolId, token.value, userPool.poolData.ClientId);
   
   if (!isValidToken){ // Redirect to login page if invalid token
+    console.log('mdw:invalid token');
     return NextResponse.redirect(loginUrl);
   }
 
