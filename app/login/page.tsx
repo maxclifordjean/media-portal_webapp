@@ -37,7 +37,9 @@ export default function Home() {
     user.authenticateUser(authenticationDetails, {
       onSuccess: async(session) => {
         //Store token in session
-        TokenAccess.set(session.getIdToken().getJwtToken());
+
+        console.log('auth before set token')
+        // TokenAccess.set(session.getIdToken().getJwtToken());
         console.log('auth succeed')
         //Redirect to portal
         router.push("/apps");
