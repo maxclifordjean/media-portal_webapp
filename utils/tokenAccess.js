@@ -9,7 +9,7 @@ export const set = async (token) => {
         // path: "/",
         secure: true,
         // httpOnly: true,
-        // sameSite: "none",
+        sameSite: "strict",
         maxAge: 60 * 60 * 24 * 7
     })
 
