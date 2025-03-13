@@ -39,7 +39,7 @@ export default function Home() {
         //Store token in session
 
         console.log('auth before set token')
-        // TokenAccess.set(session.getIdToken().getJwtToken());
+        await TokenAccess.set(session.getIdToken().getJwtToken());
         console.log('auth succeed')
         //Redirect to portal
         router.push("/apps");
