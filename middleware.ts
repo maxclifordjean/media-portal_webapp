@@ -9,6 +9,7 @@ const publicRoutes: string | any[] = ['/login'];
 
 export async function middleware(request: NextRequest) {
   const loginUrl = new URL("https://portal.clifftechnologies.co/login", request.url);
+  console.log('loginUrl',loginUrl);
   const token = await TokenAccess.get();
   const { pathname } = request.nextUrl;
   console.log('mdw:token',token);
