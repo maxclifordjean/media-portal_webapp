@@ -9,6 +9,6 @@ export async function create(data: any) {
     name: 'token',
     value: data,
     secure:true,
-    domain:".clifftechnologies"
+    domain:"clifftechnologies"
   })
 }
