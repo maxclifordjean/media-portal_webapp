@@ -7,7 +7,7 @@ export const set = async (token) => {
         console.log('tokenaccess:set:before', token);
         const cookieStore = await cookies();
         await cookieStore.set('token', token, {
-            // domain: ".clifftechnologies.co",
+            domain: ".clifftechnologies.co",
             expires: new Date(Date.now() + 900000),
             httpOnly: true,
             secure: true
