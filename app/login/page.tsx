@@ -42,7 +42,7 @@ export default function Home() {
           await TokenAccess.set(session.getIdToken().getJwtToken());
           console.log('auth succeed')
           //Redirect to portal
-          router.push("/apps");
+          //router.push("/apps");
         }catch(e){
           console.error('auth:err',e);
         }
