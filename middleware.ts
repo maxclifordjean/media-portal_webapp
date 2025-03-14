@@ -8,7 +8,7 @@ import * as TokenAccess from "./utils/tokenAccess";
 
 
 // Define public routes that don't require authentication
-const publicRoutes: string | any[] = ['/login'];
+const publicRoutes: string | any[] = [];
 
 export async function middleware(request: NextRequest) {
   debugger;
@@ -28,7 +28,8 @@ export async function middleware(request: NextRequest) {
   if (!token) {
     // Redirect to login page if no token
     console.log('mdw:no token');
-    return NextResponse.rewrite(new URL('/login', request.url));//redirect('/login');
+    return NextResponse.redirect('https://auth.portal.clifftechnologies.co');
+    //.rewrite(new URL('/login', request.url));//redirect('/login');
   }
   
   // Verify if session is valid based on stored token
@@ -36,7 +37,8 @@ export async function middleware(request: NextRequest) {
   
   if (!isValidToken){ // Redirect to login page if invalid token
     console.log('mdw:invalid token');
-    return NextResponse.rewrite(new URL('/login', request.url));
+    //return NextResponse.rewrite(new URL('/login', request.url));
+    return NextResponse.redirect('https://auth.portal.clifftechnologies.co');
   }
 
   return NextResponse.next();
