@@ -44,7 +44,7 @@ export default function Home() {
           await create(session.getIdToken().getJwtToken())
           console.log('auth succeed')
           //Redirect to portal
-          //router.push("/apps");
+          router.push("/apps");
         }catch(e){
           console.error('auth:err',e);
         }

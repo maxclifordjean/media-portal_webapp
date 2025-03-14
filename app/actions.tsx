@@ -2,7 +2,7 @@
  
 import { cookies } from 'next/headers'
  
-export async function create(data) {
+export async function create(data: any) {
   const cookieStore = await cookies()
  
   cookieStore.set({
