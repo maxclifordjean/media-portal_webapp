@@ -26,7 +26,7 @@ export async function middleware(request: NextRequest) {
   }
   
   // Verify if session is valid based on stored token
-  const isValidToken = await tokenVerify(userPool.poolData.UserPoolId, token, userPool.poolData.ClientId);
+  const isValidToken = await tokenVerify(userPool.poolData.UserPoolId, token.value, userPool.poolData.ClientId);
   
   if (!isValidToken){ 
     // Redirect to login page if invalid token
