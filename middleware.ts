@@ -27,7 +27,7 @@ export async function middleware(request: NextRequest) {
   if (!token) {
     // Redirect to login page if no token
     console.log('mdw:no token');
-    return NextResponse.redirect('/login');
+    return NextResponse.rewrite(new URL('/login', request.url));//redirect('/login');
   }
   
   // Verify if session is valid based on stored token
@@ -35,7 +35,7 @@ export async function middleware(request: NextRequest) {
   
   if (!isValidToken){ // Redirect to login page if invalid token
     console.log('mdw:invalid token');
-    return NextResponse.redirect('/login');
+    return NextResponse.rewrite(new URL('/login', request.url));
   }
 
   return NextResponse.next();
