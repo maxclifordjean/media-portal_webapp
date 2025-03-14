@@ -6,6 +6,7 @@ import userPool from "./utils/userPool";
 import {tokenVerify} from "./utils/tokenVerify";
 import * as TokenAccess from "./utils/tokenAccess";
 
+
 // Define public routes that don't require authentication
 const publicRoutes: string | any[] = ['/login'];
 

@@ -8,6 +8,7 @@ import userPool from "../../utils/userPool";
 // import * as TokenAccess from "../../utils/tokenAccess";
 import {create} from "../actions";
 import { useRouter } from 'next/navigation';
+import { getCookie, getCookies, setCookie, deleteCookie, hasCookie } from 'cookies-next';
 
 interface LoginFormInputs {
   username: string;
@@ -41,7 +42,8 @@ export default function Home() {
           //Store token in session
           console.log('auth before set token')
           //await TokenAccess.set(session.getIdToken().getJwtToken());
-          await create(session.getIdToken().getJwtToken())
+          //await create(session.getIdToken().getJwtToken())
+          setCookie('token',session.getIdToken().getJwtToken());
           console.log('auth succeed')
           //Redirect to portal
           router.push("/apps");
