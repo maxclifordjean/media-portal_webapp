@@ -51,7 +51,7 @@ export const config = {
      * 3. /_static (inside /public)
      * 4. /_vercel (Vercel internals)
      * 5. all files in the public folder
-     */
+     */'/apps',
     '/((?!api|_next|_static|_vercel|[\\w-]+\\.\\w+).*)',
   ],
 };
