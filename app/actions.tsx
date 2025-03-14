@@ -8,7 +8,7 @@ export async function create(data: any) {
   cookieStore.set({
     name: 'token',
     value: data,
-    httpOnly: true,
-    path: '/',
+    secure:true,
+    domain:".clifftechnologies"
   })
 }
