@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, redirect } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { 
   User, Home, List, Plus, Users, Mail, Headphones, Settings, LogOut,
@@ -21,13 +21,14 @@ const sidebarItems = [
   { icon: Settings, label: 'Paramètres', href: '/settings' },
 ];
 
+const authAppURL = 'https://auth.portal.clifftechnologies.co';
+
 export function Sidebar() {
-  const router = useRouter();
   const pathname = usePathname();
 
   const logout = async()=>{
     await signout(); //TODO Fix not working
-    router.push("https://portal.clifftechnologies.co/login");
+    redirect(authAppURL);
   }
 
   return (
