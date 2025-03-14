@@ -12,7 +12,7 @@ const publicRoutes: string | any[] = ['/login'];
 export async function middleware(request: NextRequest) {
   debugger;
   let response = NextResponse.next()
-  const loginUrl = new URL("https://portal.clifftechnologies.co/login", request.url);
+  const loginUrl = new URL("http://localhost:3001/login", request.url);
   console.log('loginUrl',loginUrl);
   // const token = response.cookies.get('token') //localStorage.getItem('token');// 
   const token = await TokenAccess.get();

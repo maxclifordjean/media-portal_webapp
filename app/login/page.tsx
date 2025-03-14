@@ -5,7 +5,8 @@ import { useForm } from "react-hook-form";
 import { Lock, User } from "lucide-react";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import userPool from "../../utils/userPool";
-import * as TokenAccess from "../../utils/tokenAccess";
+// import * as TokenAccess from "../../utils/tokenAccess";
+import {create} from "../actions";
 import { useRouter } from 'next/navigation';
 
 interface LoginFormInputs {
@@ -39,7 +40,8 @@ export default function Home() {
         try {
           //Store token in session
           console.log('auth before set token')
-          await TokenAccess.set(session.getIdToken().getJwtToken());
+          //await TokenAccess.set(session.getIdToken().getJwtToken());
+          await create(session.getIdToken().getJwtToken())
           console.log('auth succeed')
           //Redirect to portal
           //router.push("/apps");
