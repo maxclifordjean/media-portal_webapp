@@ -1,20 +1,16 @@
 "use server";
 
 import { cookies } from 'next/headers'
+import { setCookie, getCookie, deleteCookie } from 'cookies-next';
+
+const tokenKey = "token";
 
 export const set = async (token) => {
-    try {
-        console.log('tokenaccess:set:before', token);
-        const cookieStore = await cookies();
-        // await cookieStore.set('token', token, {
-        //     domain: "clifftechnologies.co",
-        //     expires: new Date(Date.now() + 900000),
-        //     httpOnly: true,
-        //     secure: true
-        // });
-    } catch (e) {
-        console.error('tokenAccess:erro', e);
-    }
+    await setCookie(tokenKey, token, {
+        domain: "clifftechnologies.co",
+        secure: true,
+        maxAge: 60 * 60
+    });
 }
 
 export const get = async () => {
