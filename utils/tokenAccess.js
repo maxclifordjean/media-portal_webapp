@@ -15,10 +15,10 @@ export const set = async (token) => {
 
 export const get = async () => {
     const cookieStore = await cookies()
-    return await cookieStore.get(tokenKey);
+    return cookieStore.get('token');
 }
 
 export const del = async () => {
     const cookieStore = await cookies()
-    return await cookieStore.delete(tokenKey);
+    return cookieStore.delete('token');
 }
