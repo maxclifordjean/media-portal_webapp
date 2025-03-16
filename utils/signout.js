@@ -8,6 +8,7 @@ import * as TokenAccess from "./tokenAccess";
 export const signout = async () => {
     try {
         const token = await TokenAccess.get();
+
         if (token) {
             const accessToken = new CognitoAccessToken({
                 AccessToken: token.value
@@ -19,7 +20,7 @@ export const signout = async () => {
             });
 
             //invalid cognito
-            await user.globalSignOut();
+            await user.signOut();
 
             //remove local stored token
             await TokenAccess.del();

@@ -27,7 +27,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   const logout = async()=>{
-    await signout(); //TODO Fix not working
+    await signout();
     window.location.href = authAppURL;
   }
 
