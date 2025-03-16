@@ -23,7 +23,8 @@ export const signout = async () => {
             await user.signOut();
 
             //remove local stored token
-            await TokenAccess.del();
+            const x = await TokenAccess.del();
+            console.log('x', x)
         }
         return true;
     } catch (e) {
