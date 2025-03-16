@@ -1,6 +1,3 @@
-"use server";
-
-import { cookies } from 'next/headers'
 import { setCookie } from 'cookies-next';
 
 const tokenKey = "token";
