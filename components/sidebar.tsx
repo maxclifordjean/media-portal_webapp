@@ -28,7 +28,7 @@ export function Sidebar() {
 
   const logout = async()=>{
     await signout();
-    window.location.href = authAppURL;
+    //window.location.href = authAppURL;
   }
 
   return (
