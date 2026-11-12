@@ -1,38 +1,48 @@
-'use client';
-
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import userPool from "./utils/userPool";
-import {tokenVerify} from "./utils/tokenVerify";
-import * as TokenAccess from "./utils/tokenAccess";
 
-// Define public routes that don't require authentication
-const publicRoutes: string | any[] = [];
-const authAppURL = 'https://auth.portal.clifftechnologies.co';
+/**
+ * Middleware for media-portal
+ * 
+ * Verifies authentication token and redirects to auth_webapp if needed
+ */
 
-export async function middleware(request: NextRequest) {
-  const token = await TokenAccess.get();
+// Auth app URL from environment
+const authAppURL = process.env.NEXT_PUBLIC_AUTH_APP_URL || 'http://localhost:3000';
+
+// Public routes accessible without authentication
+const publicRoutes = ['/login', '/auth'];
+
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Allow access to public routes without authentication
-  if (publicRoutes.includes(pathname)) {
+  // Allow public routes
+  if (publicRoutes.some(route => pathname.startsWith(route))) {
     return NextResponse.next();
   }
 
-  // Check if user is authenticated
+  // Check for authentication token in cookies
+  const token = request.cookies.get('smedia_auth_token')?.value;
+  const tokenExpiry = request.cookies.get('smedia_token_expiry')?.value;
+
+  // No token found - redirect to login
   if (!token) {
-    // Redirect to login app if no token
-    return NextResponse.redirect(authAppURL);
-  }
-  
-  // Verify if session is valid based on stored token
-  const isValidToken = await tokenVerify(userPool.poolData.UserPoolId, token.value, userPool.poolData.ClientId);
-  
-  if (!isValidToken){ 
-    // Redirect to login page if invalid token
-    return NextResponse.redirect(authAppURL);
+    console.log('[Middleware] No auth token found, redirecting to login');
+    return NextResponse.redirect(new URL(authAppURL, request.url));
   }
 
+  // Token expired - redirect to login
+  if (tokenExpiry) {
+    const expiryTime = parseInt(tokenExpiry);
+    const now = new Date().getTime();
+    
+    if (now > expiryTime) {
+      console.log('[Middleware] Token expired, redirecting to login');
+      return NextResponse.redirect(new URL(authAppURL, request.url));
+    }
+  }
+
+  // Token is valid - proceed
   return NextResponse.next();
 }
 

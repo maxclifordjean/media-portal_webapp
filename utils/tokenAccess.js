@@ -7,7 +7,7 @@ const tokenKey = "token";
 
 export const set = async (token) => {
     await setCookie(tokenKey, token, {
-        domain: "cliff-tech.io",
+        // domain: "cliff-tech.io",
         secure: true,
         maxAge: 60 * 60
     });
