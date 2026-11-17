@@ -10,27 +10,24 @@ import {
   Activity,
 } from "lucide-react";
 
-const BACKOFFICE_URL =
-  process.env.NEXT_PUBLIC_BACKOFFICE_URL || "http://localhost:5173";
-
 const quickLinks = [
   {
     title: "Créer une campagne",
     description: "Lancez une nouvelle expérience vidéo et commerce",
     icon: Plus,
-    href: `${BACKOFFICE_URL}/campaigns`,
+    href: "#",
   },
   {
     title: "Mes campagnes actives",
     description: "Gérez vos campagnes en cours",
     icon: Activity,
-    href: `${BACKOFFICE_URL}/campaigns`,
+    href: "#",
   },
   {
     title: "Statistiques",
     description: "Analysez les performances",
     icon: ShoppingCart,
-    href: `${BACKOFFICE_URL}/campaigns`,
+    href: "#",
   },
 ];
 

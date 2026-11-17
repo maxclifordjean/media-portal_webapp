@@ -248,7 +248,9 @@ export default function AppsPage() {
                     </ul>
 
                     <Link
-                      href={suite.name === "BaseCamp" ? "/apps/basecamp" : suite.name === "Momentum" ? "/apps/momentum" : "/apps/summit"}
+                      href="https://smedia.tv"
+                      target="_blank"
+                      rel="noreferrer"
                       className="mt-auto flex items-center justify-between border-t border-black/10 pt-6 text-sm font-bold"
                     >
                       Découvrir {suite.name}
